@@ -33,7 +33,7 @@ const projects = [
     title: 'Competitive Programming',
     category: 'C++ / DSA',
     desc: '600+ problems solved across Codeforces, CodeChef, CSES, AtCoder and SPOJ. Demonstrating strong algorithmic problem-solving.',
-    link: 'https://codeforces.com',
+    link: 'https://codeforces.com/profile/prakkkkhar',
     linkText: 'View Profiles'
   }
 ];
