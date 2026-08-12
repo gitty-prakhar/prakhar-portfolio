@@ -78,7 +78,7 @@ export const Projects = () => {
               </p>
             </div>
             
-            <a href={p.link} style={{ display: 'inline-flex', alignItems: 'center', color: 'white', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
+            <a href={p.link} target={p.link !== '#' ? "_blank" : undefined} rel={p.link !== '#' ? "noopener noreferrer" : undefined} style={{ display: 'inline-flex', alignItems: 'center', color: 'white', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}>
               {p.linkText || 'View Project'} <span style={{ marginLeft: '0.5rem', transition: 'transform 0.3s ease' }} className="arrow-hover">→</span>
             </a>
           </GlassCard>

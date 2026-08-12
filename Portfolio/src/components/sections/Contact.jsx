@@ -41,11 +41,11 @@ export const Contact = () => {
         </a>
 
         <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <a href="https://github.com/gitty-prakhar" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>GitHub</a>
-          <a href="https://www.linkedin.com/in/prakhar-gupta-bb38b925b/?skipRedirect=true" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>LinkedIn</a>
+          <a href="https://github.com/gitty-prakhar" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>GitHub</a>
+          <a href="https://www.linkedin.com/in/prakhar-gupta-bb38b925b/?skipRedirect=true" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>LinkedIn</a>
           <a href="mailto:prakharx.codes@gmail.com" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Email</a>
-          <a href="https://codeforces.com/profile/prakkkkhar" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Codeforces</a>
-          <a href="https://www.codechef.com/users/prakkkkhar" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>CodeChef</a>
+          <a href="https://codeforces.com/profile/prakkkkhar" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>Codeforces</a>
+          <a href="https://www.codechef.com/users/prakkkkhar" target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'none', fontWeight: 600 }}>CodeChef</a>
         </div>
       </GlassCard>
     </section>
