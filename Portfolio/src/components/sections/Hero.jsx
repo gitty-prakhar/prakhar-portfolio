@@ -24,7 +24,7 @@ export const Hero = () => {
 
       <div className="cta-row">
         <a href="#contact" className="cta-button cta-primary">Contact Me</a>
-        <a href="/resume.pdf" className="cta-button cta-secondary">Download Resume</a>
+        <a href="/resume.pdf" download className="cta-button cta-secondary">Download Resume</a>
       </div>
 
       <img src="/hero_character.png" alt="Hero Character" className="floating-asset hero-asset" />
