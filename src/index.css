@@ -1,0 +1,479 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Syne:wght@400;700;800&display=swap');
+
+:root {
+  --bg-dark: #0A0A0B; /* Brightened from pure black */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0; /* Brightened text */
+  --glass-bg: rgba(255, 255, 255, 0.05); /* Increased opacity */
+  --glass-border: rgba(255, 255, 255, 0.08); /* Brighter border */
+  --accent-glow: rgba(255, 255, 255, 0.15); /* Stronger spotlight */
+  --font-main: 'Inter', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  background-color: var(--bg-dark);
+  /* Faint grid background for tech aesthetic */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  cursor: none; /* Hide default cursor for custom spotlight */
+}
+
+/* Add a subtle radial gradient mask so the grid fades out at the edges */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 80%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Glowing Animated Background Orbs */
+.bg-glow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.8; /* Increased opacity for more light */
+  animation: float 20s infinite ease-in-out alternate;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: #4F46E5; /* Deep Indigo */
+  top: -10%;
+  left: -10%;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: #06B6D4; /* Cyan */
+  bottom: -20%;
+  right: -10%;
+  animation-delay: -5s;
+}
+
+.orb-3 {
+  width: 450px;
+  height: 450px;
+  background: #8B5CF6; /* Warm Violet/Purple to add warmth */
+  top: 40%;
+  left: 30%;
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, 50px) scale(1.2); }
+  100% { transform: translate(-50px, 100px) scale(0.8); }
+}
+
+/* Base structural layout */
+.section {
+  width: 100%;
+  padding: 8rem 10vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Glassmorphism Spotlight Cards */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 3rem;
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+  /* 3D preserve */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* The Spotlight Glow Effect that tracks mouse */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    var(--accent-glow),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+/* Content inside card needs to sit above the glow */
+.glass-content {
+  position: relative;
+  z-index: 2;
+  transform: translateZ(30px); /* Pops out in 3D */
+}
+
+/* Massive Typography */
+.hero-title {
+  font-size: 8vw;
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Floating Dock */
+.dock-container {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  gap: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* top highlight */
+  border-radius: 50px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.dock-item {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.dock-item:hover, .dock-item.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Spotlight Cursor System */
+.spotlight-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  mix-blend-mode: screen;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+/* Spatial Grid Layout */
+.spatial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.bento-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bento-card-tall {
+  grid-row: span 2;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.02);
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.portrait-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+.portrait-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.2); /* ultra premium look */
+  transition: filter 0.5s ease;
+}
+
+.portrait-container:hover img {
+  filter: grayscale(0%) contrast(1.1);
+}
+
+@media (max-width: 768px) {
+  .spatial-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
+/* --- NEW FEATURES STYLES --- */
+.social-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.social-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  background: white;
+  color: black;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255,255,255,0.2);
+}
+
+.cta-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.cta-button {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-decoration: none;
+}
+
+.cta-primary {
+  background: white;
+  color: black;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(255,255,255,0.4); }
+
+.cta-secondary {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+/* Progress Bars */
+.progress-container {
+  margin-bottom: 1.5rem;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 600;
+}
+.progress-track {
+  width: 100%;
+  height: 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4F46E5, #06B6D4);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  width: 0%;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Colored Experience Cards */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.exp-card {
+  border-top: 5px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.exp-logo-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  background: var(--bg-dark);
+}
+
+/* Floating 3D Assets */
+.floating-asset {
+  position: absolute;
+  pointer-events: none;
+  animation: gentleFloat 6s ease-in-out infinite alternate;
+  z-index: 0;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.hero-asset {
+  right: 0%;
+  top: 15%;
+  width: 350px;
+  max-width: 30vw;
+}
+
+.tech-asset {
+  right: -5%;
+  top: 5%;
+  width: 300px;
+  max-width: 30vw;
+  animation-delay: -3s;
+}
+
+.project-asset {
+  left: -5%;
+  top: 10%;
+  width: 350px;
+  max-width: 30vw;
+  animation-delay: -1.5s;
+}
+
+.contact-asset {
+  right: 5%;
+  top: -10%;
+  width: 300px;
+  max-width: 30vw;
+  animation-delay: -4.5s;
+}
+
+@keyframes gentleFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-30px) rotate(2deg); }
+}
